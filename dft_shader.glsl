@@ -9,6 +9,7 @@ uniform double zoom;
 uniform int itr;
 uniform int num_coeff;
 uniform float coeff_float_arr[1000];
+uniform float coeff_float_max;
 bool julia = true;
 int exponent = 2;
 
@@ -24,7 +25,11 @@ void main() {
     double re, im, c_re, c_im;
     double x  = screen_ratio * 1.0 * (gl_FragCoord.x / screen_size.x - 0.5);
     double y = (gl_FragCoord.y * 1.0 / screen_size.y - 0.5);
-    if (y < coeff_float_arr[int(x * num_coeff)]) {
+    x /= zoom;
+    y /= zoom;
+    x += center.x;
+    y += center.y;
+    if (x >= 0 && x <= 1 && y < (coeff_float_arr[int(x * num_coeff)] / 1000000)) {
         colorOut = vec4(1.0, 1.0, 1.0, 1.0);
     } else {
         colorOut = vec4(0.0, 0.0, 0.0, 1.0);

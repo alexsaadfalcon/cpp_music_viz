@@ -6,9 +6,48 @@
 #include "mandel_julia.cpp"
 #include <SFML/Audio.hpp>
 #include <thread>
+#include <future>
 #include <chrono>
 #include <iostream>
 #include <complex>
+
+double pi = M_PI;
+
+void transform1D(const short * samples, float coeff[], float * coeff_max, int sampleCount, int sampleNumber) {
+    std::complex<float> sum(0,0);
+    float theta, real, imag;
+    for (int n = 0; n < sampleCount; ++n) {
+        //std::cout << n << std::endl;
+        for (int k = sampleNumber - sampleCount; k < sampleNumber; ++k) {
+            theta = 2 * pi * n * k;
+            real = std::cos(theta);
+            imag = std::sin(theta);
+            sum = sum + std::complex<float>(real * samples[k], imag * samples[k]);
+        }
+        coeff[n] = std::abs(sum);
+        if (*coeff_max < coeff[n]) {
+            *coeff_max = coeff[n];
+        }
+        //std::cout << std::abs(sum) << std::endl;
+        sum = std::complex<float>(0, 0);
+    }
+}
+
+void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],float * coeff_max, int window_size) {
+    while (true) {
+        //coeff_arr = dft(samples);
+        sf::Time t = sound->getPlayingOffset();
+        int sampleNumber = (int) (t.asMilliseconds() * 44.1);
+        *coeff_max = -999;
+        transform1D(samples, coeff_arr, coeff_max, window_size, sampleNumber);
+
+        //std::cout << coeff_arr[714] << std::endl;
+        //std::cout << sample_number << std::endl;
+        //get_sample_numberfloat * coeff_max,
+        //run DFT from sample_number - window to sample_number
+        //feed DFT to render
+    }
+}
 
 int main(int argc, char *argv[]) {
     //Load in wave file to buffer
@@ -33,16 +72,18 @@ int main(int argc, char *argv[]) {
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
-    int window_size = 1000;
-    std::complex<float> coeff_arr[window_size];
-    for(int i = 0; i < window_size; i++) {
+    float coeff_arr[1000];
+    /*for(int i = 0; i < window_size; i++) {
         coeff_arr[i] = std::complex<float>((float)i/window_size, 0);
-    }
-    render(coeff_arr, window_size);
-    while(true) {
-        //coeff_arr = dft(samples);
-        //get_sample_number
-        //run DFT from sample_number - window to sample_number
-        //feed DFT to render
-    }
+    }*/
+
+    int x;
+    float coeff_max;
+    //std::future<int> val = std::async(&render, &coeff_arr, window_size);
+    std::thread t(update_dft, &sound, samples, coeff_arr, &coeff_max, 1000);
+    //int x = val.get();
+    //t.join();
+
+    render(coeff_arr, &coeff_max, 1000);
+    t.join();
 }

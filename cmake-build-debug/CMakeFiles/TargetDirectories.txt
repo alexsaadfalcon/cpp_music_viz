@@ -1,3 +1,3 @@
-/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir
+/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir
