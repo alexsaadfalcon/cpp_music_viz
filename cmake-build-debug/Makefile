@@ -150,32 +150,32 @@ glad.c.s:
 	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/glad.c.s
 .PHONY : glad.c.s
 
-sfml_sound_example.o: sfml_sound_example.cpp.o
+main.o: main.cpp.o
 
-.PHONY : sfml_sound_example.o
+.PHONY : main.o
 
 # target to build an object file
-sfml_sound_example.cpp.o:
-	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/sfml_sound_example.cpp.o
-.PHONY : sfml_sound_example.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-sfml_sound_example.i: sfml_sound_example.cpp.i
+main.i: main.cpp.i
 
-.PHONY : sfml_sound_example.i
+.PHONY : main.i
 
 # target to preprocess a source file
-sfml_sound_example.cpp.i:
-	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/sfml_sound_example.cpp.i
-.PHONY : sfml_sound_example.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-sfml_sound_example.s: sfml_sound_example.cpp.s
+main.s: main.cpp.s
 
-.PHONY : sfml_sound_example.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-sfml_sound_example.cpp.s:
-	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/sfml_sound_example.cpp.s
-.PHONY : sfml_sound_example.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/musicViz.dir/build.make CMakeFiles/musicViz.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... glad.o"
 	@echo "... glad.i"
 	@echo "... glad.s"
-	@echo "... sfml_sound_example.o"
-	@echo "... sfml_sound_example.i"
-	@echo "... sfml_sound_example.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
