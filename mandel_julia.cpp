@@ -118,9 +118,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../shader.glsl");
+    std::ifstream t("../mandel_julia_shader.glsl");
     if(!t.is_open()) {
-        std::cerr << "Cannot open shader.glsl!" << std::endl;
+        std::cerr << "Cannot open mandel_julia_shader.glsl!" << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -179,7 +179,7 @@ static time_t get_mtime(const char *path)
     return statbuf.st_mtime;
 }
 
-int render(std::complex coeff[], uint64_t num_coeff) {
+int render(std::complex<float> coeff_arr[], int num_coeff) {
 //int mandel_julia_renderer(short * samples, u_int start, u_int num_samples) {
     if(!glfwInit()) {
         std::cerr << "Failed to init GLFW" << std::endl;
@@ -218,7 +218,7 @@ int render(std::complex coeff[], uint64_t num_coeff) {
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../shader.glsl");
+    last_mtime = get_mtime("../mandel_julia_shader.glsl");
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -315,7 +315,7 @@ int render(std::complex coeff[], uint64_t num_coeff) {
     //glBindVertexArray(VAO);
 
     while(!glfwWindowShouldClose(window)) {
-        time_t new_time = get_mtime("../shader.glsl");
+        time_t new_time = get_mtime("../mandel_julia_shader.glsl");
         if(new_time != last_mtime) {
             glDeleteProgram(prog);
             compile_shader(prog);
@@ -333,6 +333,8 @@ int render(std::complex coeff[], uint64_t num_coeff) {
         glUniform2d(glGetUniformLocation(prog, "center"), cx, cy);
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
+        glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
+        glUniform1fv(glGetUniformLocation(prog, "coeff_arr"), num_coeff, coeff_arr);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
