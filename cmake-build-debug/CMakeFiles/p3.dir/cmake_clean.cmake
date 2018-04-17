@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/p3.dir/main.cpp.o"
+  "CMakeFiles/p3.dir/sfml_sound_example.cpp.o"
   "CMakeFiles/p3.dir/glad.c.o"
   "p3.pdb"
   "p3"

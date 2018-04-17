@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(p3)
+project(musicViz)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -9,10 +9,19 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 
-include_directories(lib/glad/include)
+include_directories(lib/glad/include)# lib/sfml/include)
+#link_directories(lib/sfml/lib)
 
 # Add the executable
-add_executable(p3 main.cpp glad.c)
+#add_executable(musicViz main.cpp glad.c)
+add_executable(musicViz sfml_sound_example.cpp glad.c)
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
+find_package(SFML REQUIRED system window graphics network audio)
+if (SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(musicViz ${SFML_LIBRARIES})
+endif()
 
 # glfw
 find_package(glfw3 REQUIRED)
@@ -28,26 +37,9 @@ find_package(GLEW REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRS})
 
 target_link_libraries(
-        p3
+        musicViz
         glfw
         ${OPENGL_LIBRARIES}
         ${GLEW_LIBRARIES}
         ${EXTRA_LIBS}
 )
-#cmake_minimum_required(VERSION 3.9)
-#project(p3)
-#include_directories(
-#        lib/glad/include
-#        lib/glfw/include
-#        lib/glew/include)
-#
-#find_package(GLEW REQUIRED)
-#if (GLEW_FOUND)
-#    include_directories(${GLEW_INCLUDE_DIRS})
-#    link_libraries(${GLEW_LIBRARIES})
-#endif()
-#
-#set(CMAKE_CXX_STANDARD 11)
-#add_subdirectory(lib/glfw)
-#add_executable(p3 main.cpp glad.c)
-#target_link_libraries(p3 glfw)
