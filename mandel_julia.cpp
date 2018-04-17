@@ -12,6 +12,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Shader.h"
+#include <complex>
 //#define M_PI           3.14159265358979323846
 
 static void error_callback(int error, const char *description) {
@@ -118,9 +119,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../mandel_julia_shader.glsl");
+    std::ifstream t("../dft_shader.glsl");
     if(!t.is_open()) {
-        std::cerr << "Cannot open mandel_julia_shader.glsl!" << std::endl;
+        std::cerr << "Cannot open dft_shader.glsl!" << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -218,7 +219,7 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../mandel_julia_shader.glsl");
+    last_mtime = get_mtime("../dft_shader.glsl");
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -313,9 +314,12 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
 
     //glBindVertexArray (vao);
     //glBindVertexArray(VAO);
-
+    float coeff_float_arr[num_coeff];
+    for (int i = 0; i < num_coeff; ++i) {
+        coeff_float_arr[i] = std::abs(coeff_arr[i]);
+    }
     while(!glfwWindowShouldClose(window)) {
-        time_t new_time = get_mtime("../mandel_julia_shader.glsl");
+        time_t new_time = get_mtime("../dft_shader.glsl");
         if(new_time != last_mtime) {
             glDeleteProgram(prog);
             compile_shader(prog);
@@ -334,7 +338,7 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
-        glUniform1fv(glGetUniformLocation(prog, "coeff_arr"), num_coeff, coeff_arr);
+        glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
