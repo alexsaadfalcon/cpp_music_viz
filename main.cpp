@@ -13,12 +13,12 @@
 
 double pi = M_PI;
 
-void transform1D(const short * samples, float coeff[], float * coeff_max, int sampleCount, int sampleNumber) {
+void transform1D(const short * samples, float coeff[], float * coeff_max, int window_size, int sampleNumber) {
     std::complex<float> sum(0,0);
     float theta, real, imag;
-    for (int n = 0; n < sampleCount; ++n) {
+    for (int n = 0; n < window_size; ++n) {
         //std::cout << n << std::endl;
-        for (int k = sampleNumber - sampleCount; k < sampleNumber; ++k) {
+        for (int k = sampleNumber - window_size; k < sampleNumber; ++k) {
             theta = 2 * pi * n * k;
             real = std::cos(theta);
             imag = std::sin(theta);
@@ -33,11 +33,12 @@ void transform1D(const short * samples, float coeff[], float * coeff_max, int sa
     }
 }
 
-void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],float * coeff_max, int window_size) {
-    while (true) {
+void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],float * coeff_max, int window_size, unsigned sampleCount) {
+    int sampleNumber = 0;
+    while (sampleNumber < sampleCount - window_size) {
         //coeff_arr = dft(samples);
         sf::Time t = sound->getPlayingOffset();
-        int sampleNumber = (int) (t.asMilliseconds() * 44.1);
+        sampleNumber = (int) (t.asMilliseconds() * 44.1);
         *coeff_max = -999;
         transform1D(samples, coeff_arr, coeff_max, window_size, sampleNumber);
 
@@ -57,18 +58,17 @@ int main(int argc, char *argv[]) {
 
     sf::Sound sound;
     sound.setBuffer(buffer); // Specify the buffer to load samples to play
-    sound.play();
 
     const short* samples = buffer.getSamples();
-
     // start playback
-    sound.play();
+
 
     // advance to 2 seconds
     //sound.setPlayingOffset(sf::seconds(10));
     unsigned sampleCount = buffer.getSampleCount();
     unsigned sampleRate  = buffer.getSampleRate();
 
+    sound.play();
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     int x;
     float coeff_max;
     //std::future<int> val = std::async(&render, &coeff_arr, window_size);
-    std::thread t(update_dft, &sound, samples, coeff_arr, &coeff_max, 1000);
+    std::thread t(update_dft, &sound, samples, coeff_arr, &coeff_max, 1000, sampleCount);
     //int x = val.get();
     //t.join();
 
