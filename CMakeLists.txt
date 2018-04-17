@@ -9,12 +9,10 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 
-include_directories(lib/glad/include)# lib/sfml/include)
-#link_directories(lib/sfml/lib)
-
+include_directories(lib/glad/include)
 # Add the executable
-#add_executable(musicViz main.cpp glad.c)
-add_executable(musicViz sfml_sound_example.cpp glad.c)
+add_executable(musicViz glad.c main.cpp)
+#add_executable(musicViz sfml_sound_example.cpp glad.c)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)
