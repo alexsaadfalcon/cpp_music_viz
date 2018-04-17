@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/glad.c" "/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/cmake-build-debug/CMakeFiles/p3.dir/glad.c.o"
+  "/Users/alexsf/CLionProjects/MusicViz/glad.c" "/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/glad.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
@@ -16,10 +16,11 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../lib/glad/include"
   "/usr/local/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/sfml_sound_example.cpp" "/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/cmake-build-debug/CMakeFiles/p3.dir/sfml_sound_example.cpp.o"
+  "/Users/alexsf/CLionProjects/MusicViz/main.cpp" "/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
@@ -30,6 +31,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../lib/glad/include"
   "/usr/local/include"
   )
 

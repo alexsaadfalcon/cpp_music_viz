@@ -19,7 +19,7 @@ static void error_callback(int error, const char *description) {
     std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-double cx = 0.0, cy = 0.0, zoom = 0.5;
+double cx = 0.5, cy = 0.5, zoom = 0.5;
 double C_re, C_im; //Julia parameters
 int counter;
 int itr = 256;
@@ -180,7 +180,7 @@ static time_t get_mtime(const char *path)
     return statbuf.st_mtime;
 }
 
-int render(std::complex<float> coeff_arr[], int num_coeff) {
+int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
 //int mandel_julia_renderer(short * samples, u_int start, u_int num_samples) {
     if(!glfwInit()) {
         std::cerr << "Failed to init GLFW" << std::endl;
@@ -314,10 +314,7 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
 
     //glBindVertexArray (vao);
     //glBindVertexArray(VAO);
-    float coeff_float_arr[num_coeff];
-    for (int i = 0; i < num_coeff; ++i) {
-        coeff_float_arr[i] = std::abs(coeff_arr[i]);
-    }
+
     while(!glfwWindowShouldClose(window)) {
         time_t new_time = get_mtime("../dft_shader.glsl");
         if(new_time != last_mtime) {
@@ -339,6 +336,7 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
         glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
+        glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -361,6 +359,7 @@ int render(std::complex<float> coeff_arr[], int num_coeff) {
         ticks++;
         current_time = glfwGetTime();
         if(current_time - last_time > .02) {
+            std::cout << *coeff_float_max << std::endl;
             fps = ticks;
             update_window_title();
             last_time = glfwGetTime();
