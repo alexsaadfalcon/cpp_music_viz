@@ -179,7 +179,7 @@ static time_t get_mtime(const char *path)
     return statbuf.st_mtime;
 }
 
-int render() {
+int render(std::complex coeff[], uint64_t num_coeff) {
 //int mandel_julia_renderer(short * samples, u_int start, u_int num_samples) {
     if(!glfwInit()) {
         std::cerr << "Failed to init GLFW" << std::endl;
