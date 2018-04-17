@@ -7,7 +7,7 @@ int main()
 {
     //Load in wave file to buffer
     sf::SoundBuffer buffer; // 16-bit signed ints
-    if (!buffer.loadFromFile("flume_insane.wav"))
+    if (!buffer.loadFromFile("../flume_insane.wav"))
         return -1;
 
     sf::Sound sound;
