@@ -33,9 +33,12 @@ int main(int argc, char *argv[]) {
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
-    uint64_t window_size = 44100 / 4;
-    std::complex coeff[window_size];
-    render(coeff, window_size);
+    int window_size = 44100 / 4;
+    std::complex<float> coeff_arr[window_size];
+    for(int i = 0; i < window_size; i++) {
+        coeff_arr[i] = std::complex<float>((float)i/window_size, 0);
+    }
+    render(coeff_arr, window_size);
     while(true) {
         //get_sample_number
         //run DFT from sample_number - window to sample_number
