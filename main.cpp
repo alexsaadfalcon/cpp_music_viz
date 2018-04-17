@@ -2,13 +2,13 @@
 // Created by Anadi Jaggia on 17/04/2018.
 //
 
-
-#include "mandel_julia.cpp"
 //#include "sfml_sound.cpp"
+#include "mandel_julia.cpp"
 #include <SFML/Audio.hpp>
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <complex>
 
 int main(int argc, char *argv[]) {
     //Load in wave file to buffer
@@ -33,5 +33,12 @@ int main(int argc, char *argv[]) {
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
-    render();
+    uint64_t window_size = 44100 / 4;
+    std::complex coeff[window_size];
+    render(coeff, window_size);
+    while(true) {
+        //get_sample_number
+        //run DFT from sample_number - window to sample_number
+        //feed DFT to render
+    }
 }
