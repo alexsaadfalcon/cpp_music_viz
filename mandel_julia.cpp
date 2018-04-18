@@ -19,7 +19,7 @@ static void error_callback(int error, const char *description) {
     std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-double cx = 0.5, cy = 0.5, zoom = 0.5;
+double cx = -2.5, cy = 1.5, zoom = 0.156729;
 double C_re, C_im; //Julia parameters
 int counter;
 int itr = 256;
@@ -364,7 +364,6 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
             update_window_title();
             last_time = glfwGetTime();
             ticks = 0;
-
             C_re = .7885*std::cos(((double)counter*2*M_PI)/(double)period);
             C_im = .7885*std::sin(((double)counter*2*M_PI)/(double)period);
             counter = (counter + 1) % period;
