@@ -13,12 +13,25 @@ uniform float coeff_float_max;
 bool julia = true;
 int exponent = 2;
 
+double absv(double f) {
+    if (f < 0.0) {
+        return f * -1.0;
+    }
+    return f;
+}
+
 vec4 map_to_color(double t) {
     double r = 9.0 * (1.0 - t) * t * t * t;
     double g = 15.0 * (1.0 - t) * (1.0 - t) * t * t;
     double b = 8.5 * (1.0 - t) * (1.0 - t) * (1.0 - t) * t;
 
     return vec4(r, g, b, 1.0);
+}
+
+vec4 map_to_color2(double x, double max_x) {
+    x = absv(x);
+    double darkness = 0.5;
+    return vec4((1-x/max_x)/darkness, 0.0, (x/max_x)/darkness, 1.0);
 }
 
 void main() {
@@ -29,8 +42,9 @@ void main() {
     y /= zoom;
     x += center.x;
     y += center.y;
-    if (x >= 0 && x <= 1 && y < (coeff_float_arr[int(x * num_coeff)] / 1000000)) {
-        colorOut = vec4(1.0, 1.0, 1.0, 1.0);
+    double max_x = 8;
+    if (x >= -max_x && x <= max_x && absv(y) < (coeff_float_arr[uint(absv(x) * double(num_coeff) / max_x / 2.0)]) / 1000000) {
+        colorOut = map_to_color2(x, max_x);
     } else {
         colorOut = vec4(0.0, 0.0, 0.0, 1.0);
     }

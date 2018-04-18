@@ -19,12 +19,16 @@ void transform1D(const short * samples, float coeff[], float * coeff_max, int wi
     for (int n = 0; n < window_size; ++n) {
         //std::cout << n << std::endl;
         for (int k = sampleNumber - window_size; k < sampleNumber; ++k) {
-            theta = 2 * pi * n * k;
-            real = std::cos(theta);
-            imag = std::sin(theta);
-            sum = sum + std::complex<float>(real * samples[k], imag * samples[k]);
+            if (k < 0) {
+               int temp = 42;
+            } else {
+                theta = 2 * pi * n * k;
+                real = std::cos(theta);
+                imag = std::sin(theta);
+                sum = sum + std::complex<float>(real * samples[k], imag * samples[k]);
+            }
         }
-        coeff[n] = std::abs(sum);
+        coeff[n] = std::abs(sum); // magnitude calculation
         if (*coeff_max < coeff[n]) {
             *coeff_max = coeff[n];
         }
@@ -35,7 +39,7 @@ void transform1D(const short * samples, float coeff[], float * coeff_max, int wi
 
 void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],float * coeff_max, int window_size, unsigned sampleCount) {
     int sampleNumber = 0;
-    while (sampleNumber < sampleCount - window_size) {
+    while (sampleNumber < sampleCount) {
         //coeff_arr = dft(samples);
         sf::Time t = sound->getPlayingOffset();
         sampleNumber = (int) (t.asMilliseconds() * 44.1);
@@ -61,7 +65,6 @@ int main(int argc, char *argv[]) {
 
     const short* samples = buffer.getSamples();
     // start playback
-
 
     // advance to 2 seconds
     //sound.setPlayingOffset(sf::seconds(10));
