@@ -67,11 +67,11 @@ int main(int argc, char *argv[]) {
     // start playback
 
     // advance to 2 seconds
-    //sound.setPlayingOffset(sf::seconds(10));
     unsigned sampleCount = buffer.getSampleCount();
     unsigned sampleRate  = buffer.getSampleRate();
 
     sound.play();
+    sound.setPlayingOffset(sf::seconds(35));
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
