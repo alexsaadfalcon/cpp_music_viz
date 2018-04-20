@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <random>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <sys/stat.h>
@@ -119,9 +120,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../dft_shader.glsl");
+    std::ifstream t("../mandel_julia_shader.glsl");
     if(!t.is_open()) {
-        std::cerr << "Cannot open dft_shader.glsl!" << std::endl;
+        std::cerr << "Cannot open mandel_julia_shader.glsl!" << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -219,7 +220,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../dft_shader.glsl");
+    last_mtime = get_mtime("../mandel_julia_shader.glsl");
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -316,7 +317,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     //glBindVertexArray(VAO);
 
     while(!glfwWindowShouldClose(window)) {
-        time_t new_time = get_mtime("../dft_shader.glsl");
+        time_t new_time = get_mtime("../mandel_julia_shader.glsl");
         if(new_time != last_mtime) {
             glDeleteProgram(prog);
             compile_shader(prog);
@@ -356,16 +357,45 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
         glfwPollEvents();
 
         int period = 500;
+        double theta;
         ticks++;
         current_time = glfwGetTime();
-        if(current_time - last_time > .02) {
-            std::cout << *coeff_float_max << std::endl;
+        C_re = -.6;
+        C_im = -.6;
+        double C_re_old = -.6, C_im_old = -.6;
+        if(current_time - last_time > .002) {
+            //std::cout << *coeff_float_max << std::endl;
             fps = ticks;
             update_window_title();
             last_time = glfwGetTime();
             ticks = 0;
-            C_re = .7885*std::cos(((double)counter*2*M_PI)/(double)period);
-            C_im = .7885*std::sin(((double)counter*2*M_PI)/(double)period);
+            float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
+            for (int i = 0; i < num_coeff; ++i) {
+                mag += coeff_float_arr[i];
+            }
+            mag = alpha * mag * .7885 / 1000.0 / float(num_coeff) + beta * old_mag;
+            std::cout << "Magnitude : " << mag << std::endl;
+            old_mag = mag;
+            //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
+            //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
+            theta = std::rand() * 2 * M_PI;
+            //theta %= 2 * M_PI;
+            C_re += .1 * mag * std::cos(theta);
+            C_im += .1 * mag * std::sin(theta);
+            if (C_re > -.5) {
+                C_re = -.5;
+            } else if (C_re < -1) {
+                C_re = -1;
+            }
+            if (C_im > -.5) {
+                C_im = -.5;
+            } else if (C_im < -1) {
+                C_im = -1;
+            }
+            C_re = alpha * C_re + beta * C_re_old;
+            C_im = alpha * C_im + beta * C_im_old;
+            C_re_old = C_re;
+            C_im_old = C_im;
             counter = (counter + 1) % period;
         }
     }
