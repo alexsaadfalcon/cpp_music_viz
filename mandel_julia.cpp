@@ -123,9 +123,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../mandel_julia_shader.glsl");
+    std::ifstream t("../complex_shader.glsl");
     if(!t.is_open()) {
-        std::cerr << "Cannot open mandel_julia_shader.glsl!" << std::endl;
+        std::cerr << "Cannot open complex_shader.glsl!" << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -223,7 +223,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../mandel_julia_shader.glsl");
+    last_mtime = get_mtime("../complex_shader.glsl");
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -320,7 +320,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     //glBindVertexArray(VAO);
 
     while(!glfwWindowShouldClose(window)) {
-        time_t new_time = get_mtime("../mandel_julia_shader.glsl");
+        time_t new_time = get_mtime("../complex_shader.glsl");
         if(new_time != last_mtime) {
             glDeleteProgram(prog);
             compile_shader(prog);
