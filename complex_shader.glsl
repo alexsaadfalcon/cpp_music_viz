@@ -7,6 +7,8 @@ uniform dvec2 screen_size;
 uniform dvec2 center;
 uniform double zoom;
 uniform int itr;
+uniform float real_arr[500];
+uniform float imag_arr[500];
 bool julia = true;
 int exponent = 2;
 
@@ -41,6 +43,7 @@ void main()
         //c_im = 0;
         c_re = C_re;
         c_im = C_im;
+
         re = screen_ratio * 1.0 * (gl_FragCoord.x / screen_size.x - 0.5);
         im = (gl_FragCoord.y * 1.0 / screen_size.y - 0.5);
 
