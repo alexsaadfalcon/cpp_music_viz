@@ -70,7 +70,8 @@ int main(int argc, char *argv[]) {
     unsigned sampleCount = buffer.getSampleCount();
     unsigned sampleRate  = buffer.getSampleRate();
 
-    //sound.play();
+    sound.play();
+    sound.setVolume(1.0);
     sound.setPlayingOffset(sf::seconds(35));
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
