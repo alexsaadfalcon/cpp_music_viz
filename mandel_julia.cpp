@@ -10,6 +10,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <sys/stat.h>
+#include <map>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Shader.h"
@@ -38,6 +39,8 @@ double last_time = 0, current_time = 0;
 unsigned int ticks = 0;
 
 bool keys[1024] = { 0 };
+
+std::map<int, int> frequency_buckets;
 
 static void cursor_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -371,7 +374,8 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
             ticks = 0;
             float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
             for (int i = 0; i < num_coeff; ++i) {
-                mag += coeff_float_arr[i];
+                //mag += coeff_float_arr[i];
+                mag += coeff_float_arr[i] * coeff_float_arr[i];
             }
             mag = alpha * mag * .7885 / 1000.0 / float(num_coeff) + beta * old_mag;
             std::cout << "Magnitude : " << mag << std::endl;
@@ -379,7 +383,6 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
             //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
             //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
             theta = std::rand() * 2 * M_PI;
-            //theta %= 2 * M_PI;
             C_re += .1 * mag * std::cos(theta);
             C_im += .1 * mag * std::sin(theta);
             if (C_re > -.5) {
