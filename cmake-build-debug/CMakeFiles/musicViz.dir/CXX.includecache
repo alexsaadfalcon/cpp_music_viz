@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/alexsf/CLionProjects/MusicViz/Shader.h
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/Shader.h
 glm/glm.hpp
 -
 string
@@ -18,9 +18,9 @@ sstream
 iostream
 -
 
-/Users/alexsf/CLionProjects/MusicViz/main.cpp
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/main.cpp
 mandel_julia.cpp
-/Users/alexsf/CLionProjects/MusicViz/mandel_julia.cpp
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/mandel_julia.cpp
 SFML/Audio.hpp
 -
 thread
@@ -34,7 +34,7 @@ iostream
 complex
 -
 
-/Users/alexsf/CLionProjects/MusicViz/mandel_julia.cpp
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/mandel_julia.cpp
 iostream
 -
 iomanip
@@ -45,22 +45,26 @@ sstream
 -
 vector
 -
+random
+-
 GL/glew.h
 -
 GLFW/glfw3.h
 -
 sys/stat.h
 -
+map
+-
 stb_image.h
-/Users/alexsf/CLionProjects/MusicViz/stb_image.h
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/stb_image.h
 Shader.h
-/Users/alexsf/CLionProjects/MusicViz/Shader.h
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/Shader.h
 complex
 -
 
-/Users/alexsf/CLionProjects/MusicViz/stb_image.h
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/stb_image.h
 stb_image.h
-/Users/alexsf/CLionProjects/MusicViz/stb_image.h
+/Users/jaggia/Desktop/Class/ECE 4122/Final Project/MusicViz/stb_image.h
 stdio.h
 -
 stdarg.h
