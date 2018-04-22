@@ -184,7 +184,8 @@ static time_t get_mtime(const char *path)
     return statbuf.st_mtime;
 }
 
-int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
+int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
+           float  * coeff_float_max, int num_coeff) {
 //int mandel_julia_renderer(short * samples, u_int start, u_int num_samples) {
     if(!glfwInit()) {
         std::cerr << "Failed to init GLFW" << std::endl;
@@ -340,6 +341,8 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
         glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
+        glUniform1fv(glGetUniformLocation(prog, "real_arr"), num_coeff / 2, real_arr);
+        glUniform1fv(glGetUniformLocation(prog, "imag_arr"), num_coeff / 2, imag_arr);
         glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -372,33 +375,31 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
             update_window_title();
             last_time = glfwGetTime();
             ticks = 0;
-            float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
-            for (int i = 0; i < num_coeff; ++i) {
-                //mag += coeff_float_arr[i];
-                mag += coeff_float_arr[i] * coeff_float_arr[i];
-            }
-            mag = alpha * mag * .7885 / 1000.0 / float(num_coeff) + beta * old_mag;
-            std::cout << "Magnitude : " << mag << std::endl;
-            old_mag = mag;
             //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
             //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
+            float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
+            for (int i = 0; i < num_coeff; ++i) {
+                mag += coeff_float_arr[i];
+                //mag += coeff_float_arr[i] * coeff_float_arr[i];
+            }
+            mag = alpha * mag * .7885 / 1000.0 / float(num_coeff) + beta * old_mag;
+            //std::cout << "Magnitude : " << mag << std::endl;
+            old_mag = mag;
             theta = std::rand() * 2 * M_PI;
-            C_re += .1 * mag * std::cos(theta);
-            C_im += .1 * mag * std::sin(theta);
-            if (C_re > -.5) {
-                C_re = -.5;
-            } else if (C_re < -1) {
-                C_re = -1;
+            float real_sum, imag_sum;
+            for (int i = 0; i < 500; i++) {
+                real_sum += real_arr[i];
             }
-            if (C_im > -.5) {
-                C_im = -.5;
-            } else if (C_im < -1) {
-                C_im = -1;
+            for (int i = 0; i < 500; i++) {
+                imag_sum += imag_arr[i];
             }
-            C_re = alpha * C_re + beta * C_re_old;
-            C_im = alpha * C_im + beta * C_im_old;
-            C_re_old = C_re;
-            C_im_old = C_im;
+            real_sum /= 500;
+            imag_sum /= 500;
+            C_re = (1 - real_sum) / 2.5;
+            C_im = (1 - imag_sum) / 2.5;
+            std::cout << "C_re : " << (1 - real_sum) / 2.5 << std::endl;
+            std::cout << "C_im : " << (1 - imag_sum) / 2.5 << std::endl;
+            //C_re = 0.4;
             counter = (counter + 1) % period;
         }
     }
