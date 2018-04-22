@@ -388,15 +388,21 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             theta = std::rand() * 2 * M_PI;
             float real_sum, imag_sum;
             for (int i = 0; i < 500; i++) {
+                if (i % 100 == 0) {
+                  C_re = real_sum / 100;
+                  C_im = imag_sum / 100;
+                  C_re = (1 - real_sum);
+                  C_im = (1 - imag_sum);
+                  real_sum = 0;
+                  imag_sum = 0;
+                }
                 real_sum += real_arr[i];
-            }
-            for (int i = 0; i < 500; i++) {
                 imag_sum += imag_arr[i];
             }
-            real_sum /= 500;
-            imag_sum /= 500;
-            C_re = (1 - real_sum) / 2.5;
-            C_im = (1 - imag_sum) / 2.5;
+            //real_sum /= 500;
+            //imag_sum /= 500;
+            //C_re = (1 - real_sum) / 2.5;
+            //C_im = (1 - imag_sum) / 2.5;
             std::cout << "C_re : " << (1 - real_sum) / 2.5 << std::endl;
             std::cout << "C_im : " << (1 - imag_sum) / 2.5 << std::endl;
             //C_re = 0.4;
