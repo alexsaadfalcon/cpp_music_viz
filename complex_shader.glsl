@@ -7,8 +7,8 @@ uniform dvec2 screen_size;
 uniform dvec2 center;
 uniform double zoom;
 uniform int itr;
-uniform float real_arr[500];
-uniform float imag_arr[500];
+//uniform float real_arr[500];
+//uniform float imag_arr[500];
 bool julia = true;
 int exponent = 2;
 

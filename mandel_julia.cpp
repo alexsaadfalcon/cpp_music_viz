@@ -341,8 +341,8 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
         glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
-        glUniform1fv(glGetUniformLocation(prog, "real_arr"), num_coeff / 2, real_arr);
-        glUniform1fv(glGetUniformLocation(prog, "imag_arr"), num_coeff / 2, imag_arr);
+        //glUniform1fv(glGetUniformLocation(prog, "real_arr"), num_coeff / 2, real_arr);
+        //glUniform1fv(glGetUniformLocation(prog, "imag_arr"), num_coeff / 2, imag_arr);
         glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -369,7 +369,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         C_re = -.6;
         C_im = -.6;
         double C_re_old = -.6, C_im_old = -.6;
-        if(current_time - last_time > .002) {
+        if(current_time - last_time > .02) {
             //std::cout << *coeff_float_max << std::endl;
             fps = ticks;
             update_window_title();
@@ -386,25 +386,43 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             //std::cout << "Magnitude : " << mag << std::endl;
             old_mag = mag;
             theta = std::rand() * 2 * M_PI;
-            float real_sum, imag_sum;
+            int avg_size = 100;
+            float moving_avg_real[avg_size];
+            float moving_avg_imag[avg_size];
+            float avg_real = 0, avg_imag = 0;
+            int index_counter = 0;
+            float real_sum = 0, imag_sum = 0;
             for (int i = 0; i < 500; i++) {
-                if (i % 100 == 0) {
-                  C_re = real_sum / 100;
-                  C_im = imag_sum / 100;
-                  C_re = (1 - real_sum);
-                  C_im = (1 - imag_sum);
-                  real_sum = 0;
-                  imag_sum = 0;
-                }
                 real_sum += real_arr[i];
                 imag_sum += imag_arr[i];
             }
+            real_sum /= 500;
+            imag_sum /= 500;
+            //real_sum = 1 - real_sum;
+            //imag_sum = 1 - imag_sum;
+            std::cout << "real_sum" << real_sum << std::endl;
+            std::cout << "imag_sum" << imag_sum << std::endl;
+            moving_avg_real[index_counter] = real_sum;
+            moving_avg_imag[index_counter] = imag_sum;
+            index_counter = (index_counter + 1) % avg_size;
+            for (int i = 0; i < avg_size; ++i) {
+                avg_real += moving_avg_real[i] / avg_size;
+                avg_imag += moving_avg_imag[i] / avg_size;
+                //std::cout << "mvg avg real : " << moving_avg_real[i] << std::endl;
+                //std::cout << "mvg avg imag : " << moving_avg_imag[i] << std::endl;
+            }
+            //avg_real /= avg_size;
+            //avg_imag /= avg_size;
+
+            //C_re = avg_real;
+            //C_im = avg_imag;
+
             //real_sum /= 500;
             //imag_sum /= 500;
-            //C_re = (1 - real_sum) / 2.5;
-            //C_im = (1 - imag_sum) / 2.5;
-            std::cout << "C_re : " << (1 - real_sum) / 2.5 << std::endl;
-            std::cout << "C_im : " << (1 - imag_sum) / 2.5 << std::endl;
+            C_re = (1 - real_sum) / 2.5;
+            C_im = (1 - imag_sum) / 2.5;
+            std::cout << "C_re : " << C_re << std::endl;
+            std::cout << "C_im : " << C_im << std::endl;
             //C_re = 0.4;
             counter = (counter + 1) % period;
         }
