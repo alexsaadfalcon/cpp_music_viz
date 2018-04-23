@@ -11,13 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/musicViz.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/musicViz.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/musicViz" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/musicViz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/complex_shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/complex_shader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mandel_julia.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/mandel_julia.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,8 +39,8 @@
       <file leaf-file-name="mandel_julia.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
+            <state relative-caret-position="163">
+              <caret line="411" column="30" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
               <folding>
                 <element signature="e#43#62#0" expanded="true" />
               </folding>
@@ -57,8 +51,8 @@
       <file leaf-file-name="complex_shader.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/complex_shader.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-857">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="24" />
+            <state relative-caret-position="165">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -174,10 +168,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
-    <option name="height" value="800" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -261,7 +254,7 @@
       <workItem from="1524332067229" duration="1922000" />
       <workItem from="1524414853530" duration="1252000" />
       <workItem from="1524436677136" duration="793000" />
-      <workItem from="1524507816128" duration="1757000" />
+      <workItem from="1524507816128" duration="2017000" />
     </task>
     <task id="LOCAL-00001" summary="Mac OS working after brew install">
       <created>1523980712637</created>
@@ -312,11 +305,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524437245861</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="almost smooth...">
+      <created>1524509765928</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1524509765929</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47790000" />
+    <option name="totallyTimeSpent" value="48050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="800" extended-state="0" />
@@ -742,15 +742,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/complex_shader.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-857">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="24" />
+        <state relative-caret-position="165">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="400" column="36" selection-start-line="400" selection-start-column="36" selection-end-line="400" selection-end-column="36" />
+        <state relative-caret-position="163">
+          <caret line="411" column="30" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
           <folding>
             <element signature="e#43#62#0" expanded="true" />
           </folding>

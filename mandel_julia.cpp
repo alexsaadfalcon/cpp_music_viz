@@ -414,13 +414,13 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             //avg_real /= avg_size;
             //avg_imag /= avg_size;
 
-            //C_re = avg_real;
-            //C_im = avg_imag;
+            C_re = avg_real;
+            C_im = avg_imag;
 
             //real_sum /= 500;
             //imag_sum /= 500;
-            C_re = (1 - real_sum) / 2.5;
-            C_im = (1 - imag_sum) / 2.5;
+            //C_re = (1 - real_sum) / 2.5;
+            //C_im = (1 - imag_sum) / 2.5;
             std::cout << "C_re : " << C_re << std::endl;
             std::cout << "C_im : " << C_im << std::endl;
             //C_re = 0.4;
