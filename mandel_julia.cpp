@@ -26,6 +26,7 @@ double C_re, C_im; //Julia parameters
 int counter;
 int itr = 256;
 int fps = 0;
+uint64_t index_counter = 0;
 
 GLFWwindow *window = nullptr;
 
@@ -369,7 +370,15 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         C_re = -.6;
         C_im = -.6;
         double C_re_old = -.6, C_im_old = -.6;
-        if(current_time - last_time > .02) {
+
+        uint64_t avg_size = 2000;
+        float moving_avg_real[avg_size];
+        float moving_avg_imag[avg_size];
+        for (int i = 0; i < avg_size; ++i) {
+            moving_avg_real[i] = 0;
+            moving_avg_imag[i] = 0;
+        }
+        if(current_time - last_time > .002) {
             //std::cout << *coeff_float_max << std::endl;
             fps = ticks;
             update_window_title();
@@ -386,11 +395,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             //std::cout << "Magnitude : " << mag << std::endl;
             old_mag = mag;
             theta = std::rand() * 2 * M_PI;
-            int avg_size = 100;
-            float moving_avg_real[avg_size];
-            float moving_avg_imag[avg_size];
-            float avg_real = 0, avg_imag = 0;
-            int index_counter = 0;
+
             float real_sum = 0, imag_sum = 0;
             for (int i = 0; i < 500; i++) {
                 real_sum += real_arr[i];
@@ -405,20 +410,20 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             moving_avg_real[index_counter] = real_sum;
             moving_avg_imag[index_counter] = imag_sum;
             index_counter = (index_counter + 1) % avg_size;
+            std::cout << index_counter << std::endl;
+            float avg_real = 0, avg_imag = 0;
             for (int i = 0; i < avg_size; ++i) {
-                avg_real += moving_avg_real[i] / avg_size;
-                avg_imag += moving_avg_imag[i] / avg_size;
+                avg_real += moving_avg_real[i];
+                avg_imag += moving_avg_imag[i];
                 //std::cout << "mvg avg real : " << moving_avg_real[i] << std::endl;
                 //std::cout << "mvg avg imag : " << moving_avg_imag[i] << std::endl;
             }
-            //avg_real /= avg_size;
-            //avg_imag /= avg_size;
+            avg_real /= avg_size;
+            avg_imag /= avg_size;
 
-            C_re = avg_real;
-            C_im = avg_imag;
+            C_re = avg_real * 100000;
+            C_im = avg_imag * 100000;
 
-            //real_sum /= 500;
-            //imag_sum /= 500;
             //C_re = (1 - real_sum) / 2.5;
             //C_im = (1 - imag_sum) / 2.5;
             std::cout << "C_re : " << C_re << std::endl;
