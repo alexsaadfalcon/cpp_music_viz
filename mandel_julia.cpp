@@ -371,7 +371,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         C_im = -.6;
         double C_re_old = -.6, C_im_old = -.6;
 
-        uint64_t avg_size = 2000;
+        uint64_t avg_size = 8000;
         float moving_avg_real[avg_size];
         float moving_avg_imag[avg_size];
         for (int i = 0; i < avg_size; ++i) {
@@ -391,7 +391,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
                 mag += coeff_float_arr[i] * coeff_float_arr[i]; // sum magnitude squared
                 //mag += coeff_float_arr[i] * coeff_float_arr[i];
             }
-            mag = alpha * mag * .7885 / 300000000.0 / float(num_coeff) + beta * old_mag;
+            mag = alpha * mag * .7885 / 400000000.0 / float(num_coeff) + beta * old_mag;
             //std::cout << "Magnitude : " << mag << std::endl;
             old_mag = mag;
             itr = mag;
@@ -399,12 +399,12 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             theta = std::rand() * 2 * M_PI;
 
             float real_sum = 0, imag_sum = 0;
-            for (int i = 0; i < 500; i++) {
+            for (int i = 0; i < 5000; i++) {
                 real_sum += real_arr[i];
                 imag_sum += imag_arr[i];
             }
-            real_sum /= 500;
-            imag_sum /= 500;
+            real_sum /= 5000;
+            imag_sum /= 5000;
             //real_sum = 1 - real_sum;
             //imag_sum = 1 - imag_sum;
             std::cout << "real_sum" << real_sum << std::endl;
@@ -423,8 +423,8 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             avg_real /= avg_size;
             avg_imag /= avg_size;
 
-            C_re = avg_real * 100000;
-            C_im = avg_imag * 100000;
+            C_re = avg_real;
+            C_im = avg_imag;
 
             //C_re = (1 - real_sum) / 2.5;
             //C_im = (1 - imag_sum) / 2.5;
