@@ -61,7 +61,7 @@ void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],floa
 int main(int argc, char *argv[]) {
     //Load in wave file to buffer
     sf::SoundBuffer buffer; // 16-bit signed ints
-    if (!buffer.loadFromFile("../Gucci Gang.wav"))
+    if (!buffer.loadFromFile("../RAF.wav"))
         return -1;
 
     sf::Sound sound;
