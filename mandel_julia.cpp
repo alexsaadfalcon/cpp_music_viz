@@ -386,14 +386,16 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             ticks = 0;
             //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
             //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
-            float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
+            float mag = 0, old_mag = 0, alpha = .4, beta = 1-alpha;
             for (int i = 0; i < num_coeff; ++i) {
-                mag += coeff_float_arr[i];
+                mag += coeff_float_arr[i] * coeff_float_arr[i]; // sum magnitude squared
                 //mag += coeff_float_arr[i] * coeff_float_arr[i];
             }
-            mag = alpha * mag * .7885 / 1000.0 / float(num_coeff) + beta * old_mag;
+            mag = alpha * mag * .7885 / 300000000.0 / float(num_coeff) + beta * old_mag;
             //std::cout << "Magnitude : " << mag << std::endl;
             old_mag = mag;
+            itr = mag;
+            std::cout << "MAG SQUARED " << mag << std::endl;
             theta = std::rand() * 2 * M_PI;
 
             float real_sum = 0, imag_sum = 0;
