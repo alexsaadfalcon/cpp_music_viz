@@ -21,11 +21,12 @@ static void error_callback(int error, const char *description) {
     std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-double cx = -2.5, cy = 1.5, zoom = 0.156729;
+double cx = 0.0, cy = 0.0, zoom = 0.156729;
 double C_re, C_im; //Julia parameters
 int counter;
 int itr = 256;
 int fps = 0;
+char *shaderName = "../complex_shader.glsl";
 uint64_t index_counter = 0;
 
 GLFWwindow *window = nullptr;
@@ -64,8 +65,8 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     zoom += yoffset * 0.1 * zoom;
-    if(zoom < 0.1) {
-        zoom = 0.1;
+    if(zoom < 0.05) {
+        zoom = 0.05;
     }
 }
 
@@ -124,9 +125,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../complex_shader.glsl");
+    std::ifstream t(shaderName);
     if(!t.is_open()) {
-        std::cerr << "Cannot open complex_shader.glsl!" << std::endl;
+        std::cerr << "Cannot open " << shaderName << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -225,7 +226,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../complex_shader.glsl");
+    last_mtime = get_mtime(shaderName);
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -331,6 +332,8 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
 
             std::cout << "Reloaded shader: " << last_mtime << std::endl;
         }
+        int num_coeff_downs = 1000;
+        float * coeff_float_arr_downs = coeff_float_arr;
 
         glfwGetWindowSize(window, &w, &h);
         glUniform2d(glGetUniformLocation(prog, "screen_size"), (double)w, (double)h);
@@ -340,11 +343,13 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         glUniform2d(glGetUniformLocation(prog, "center"), cx, cy);
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
-        glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
-        glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
+        glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff_downs);
         //glUniform1fv(glGetUniformLocation(prog, "real_arr"), num_coeff / 2, real_arr);
         //glUniform1fv(glGetUniformLocation(prog, "imag_arr"), num_coeff / 2, imag_arr);
         glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
+        if (shaderName == "../dft_shader.glsl") {
+            glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff_downs, coeff_float_arr_downs);
+        }
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -386,46 +391,48 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             ticks = 0;
             //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
             //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
-            float mag = 0, old_mag = 0, alpha = .4, beta = 1-alpha;
-            for (int i = 0; i < num_coeff; ++i) {
-                mag += coeff_float_arr[i] * coeff_float_arr[i]; // sum magnitude squared
-                //mag += coeff_float_arr[i] * coeff_float_arr[i];
-            }
-            mag = alpha * mag * .7885 / 400000000.0 / float(num_coeff) + beta * old_mag;
-            //std::cout << "Magnitude : " << mag << std::endl;
-            old_mag = mag;
-            itr = mag;
-            std::cout << "MAG SQUARED " << mag << std::endl;
-            theta = std::rand() * 2 * M_PI;
+            if (shaderName != "../dft_shader.glsl") {
+                float mag = 0, old_mag = 0, alpha = .4, beta = 1 - alpha;
+                for (int i = 0; i < num_coeff; ++i) {
+                    mag += coeff_float_arr[i] * coeff_float_arr[i]; // sum magnitude squared
+                }
+                mag = alpha * mag * .7885 / 400000000.0 / float(num_coeff) + beta * old_mag;
+                //std::cout << "Magnitude : " << mag << std::endl;
+                old_mag = mag;
+                itr = mag;
+                std::cout << "MAG SQUARED " << mag << std::endl;
+                theta = std::rand() * 2 * M_PI;
 
-            float real_sum = 0, imag_sum = 0;
-            for (int i = 0; i < 5000; i++) {
-                real_sum += real_arr[i];
-                imag_sum += imag_arr[i];
-            }
-            real_sum /= 5000;
-            imag_sum /= 5000;
-            //real_sum = 1 - real_sum;
-            //imag_sum = 1 - imag_sum;
-            std::cout << "real_sum" << real_sum << std::endl;
-            std::cout << "imag_sum" << imag_sum << std::endl;
-            moving_avg_real[index_counter] = real_sum;
-            moving_avg_imag[index_counter] = imag_sum;
-            index_counter = (index_counter + 1) % avg_size;
-            std::cout << index_counter << std::endl;
-            float avg_real = 0, avg_imag = 0;
-            for (int i = 0; i < avg_size; ++i) {
-                avg_real += moving_avg_real[i];
-                avg_imag += moving_avg_imag[i];
-                //std::cout << "mvg avg real : " << moving_avg_real[i] << std::endl;
-                //std::cout << "mvg avg imag : " << moving_avg_imag[i] << std::endl;
-            }
-            avg_real /= avg_size;
-            avg_imag /= avg_size;
+                float real_sum = 0, imag_sum = 0;
+                for (int i = 0; i < num_coeff; i++) {
+                    real_sum += real_arr[i];
+                    imag_sum += imag_arr[i];
+                }
+                real_sum /= num_coeff;
+                imag_sum /= num_coeff;
+                //real_sum = 1 - real_sum;
+                //imag_sum = 1 - imag_sum;
+                std::cout << "real_sum" << real_sum << std::endl;
+                std::cout << "imag_sum" << imag_sum << std::endl;
+                moving_avg_real[index_counter] = real_sum;
+                moving_avg_imag[index_counter] = imag_sum;
+                index_counter = (index_counter + 1) % avg_size;
+                std::cout << index_counter << std::endl;
+                float avg_real = 0, avg_imag = 0;
+                for (int i = 0; i < avg_size; ++i) {
+                    avg_real += moving_avg_real[i];
+                    avg_imag += moving_avg_imag[i];
+                    //std::cout << "mvg avg real : " << moving_avg_real[i] << std::endl;
+                    //std::cout << "mvg avg imag : " << moving_avg_imag[i] << std::endl;
+                }
+                avg_real /= avg_size;
+                avg_imag /= avg_size;
 
-            C_re = avg_real;
-            C_im = avg_imag;
-
+                //C_re = -.59;
+                //C_im = .41;
+                C_re = avg_real;
+                C_im = avg_imag;
+            } else {}
             //C_re = (1 - real_sum) / 2.5;
             //C_im = (1 - imag_sum) / 2.5;
             std::cout << "C_re : " << C_re << std::endl;
