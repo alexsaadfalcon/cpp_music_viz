@@ -7,11 +7,11 @@ C_FLAGS = -g
 
 C_DEFINES = -DGLFW_DLL
 
-C_INCLUDES = -I/Users/alexsf/CLionProjects/MusicViz/lib/glad/include -isystem /usr/local/include 
+C_INCLUDES = -I/Users/corbettkaniff/CLionProjects/MusicViz/lib/glad/include -isystem /usr/local/include 
 
 CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = -DGLFW_DLL
 
-CXX_INCLUDES = -I/Users/alexsf/CLionProjects/MusicViz/lib/glad/include -isystem /usr/local/include 
+CXX_INCLUDES = -I/Users/corbettkaniff/CLionProjects/MusicViz/lib/glad/include -isystem /usr/local/include 
 

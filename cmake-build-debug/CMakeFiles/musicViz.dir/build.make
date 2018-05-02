@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alexsf/CLionProjects/MusicViz
+CMAKE_SOURCE_DIR = /Users/corbettkaniff/CLionProjects/MusicViz
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alexsf/CLionProjects/MusicViz/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/musicViz.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/musicViz.dir/flags.make
 
 CMakeFiles/musicViz.dir/glad.c.o: CMakeFiles/musicViz.dir/flags.make
 CMakeFiles/musicViz.dir/glad.c.o: ../glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/musicViz.dir/glad.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/musicViz.dir/glad.c.o   -c /Users/alexsf/CLionProjects/MusicViz/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/musicViz.dir/glad.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/musicViz.dir/glad.c.o   -c /Users/corbettkaniff/CLionProjects/MusicViz/glad.c
 
 CMakeFiles/musicViz.dir/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/musicViz.dir/glad.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexsf/CLionProjects/MusicViz/glad.c > CMakeFiles/musicViz.dir/glad.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/corbettkaniff/CLionProjects/MusicViz/glad.c > CMakeFiles/musicViz.dir/glad.c.i
 
 CMakeFiles/musicViz.dir/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/musicViz.dir/glad.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexsf/CLionProjects/MusicViz/glad.c -o CMakeFiles/musicViz.dir/glad.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/corbettkaniff/CLionProjects/MusicViz/glad.c -o CMakeFiles/musicViz.dir/glad.c.s
 
 CMakeFiles/musicViz.dir/glad.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/musicViz.dir/glad.c.o.provides.build: CMakeFiles/musicViz.dir/glad.c.
 
 CMakeFiles/musicViz.dir/main.cpp.o: CMakeFiles/musicViz.dir/flags.make
 CMakeFiles/musicViz.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/musicViz.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/musicViz.dir/main.cpp.o -c /Users/alexsf/CLionProjects/MusicViz/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/musicViz.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/musicViz.dir/main.cpp.o -c /Users/corbettkaniff/CLionProjects/MusicViz/main.cpp
 
 CMakeFiles/musicViz.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/musicViz.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexsf/CLionProjects/MusicViz/main.cpp > CMakeFiles/musicViz.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/corbettkaniff/CLionProjects/MusicViz/main.cpp > CMakeFiles/musicViz.dir/main.cpp.i
 
 CMakeFiles/musicViz.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/musicViz.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexsf/CLionProjects/MusicViz/main.cpp -o CMakeFiles/musicViz.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/corbettkaniff/CLionProjects/MusicViz/main.cpp -o CMakeFiles/musicViz.dir/main.cpp.s
 
 CMakeFiles/musicViz.dir/main.cpp.o.requires:
 
@@ -124,7 +124,7 @@ musicViz: /usr/local/lib/libsfml-audio.dylib
 musicViz: /usr/local/lib/libglfw.3.2.dylib
 musicViz: /usr/local/lib/libGLEW.dylib
 musicViz: CMakeFiles/musicViz.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable musicViz"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable musicViz"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/musicViz.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -142,6 +142,6 @@ CMakeFiles/musicViz.dir/clean:
 .PHONY : CMakeFiles/musicViz.dir/clean
 
 CMakeFiles/musicViz.dir/depend:
-	cd /Users/alexsf/CLionProjects/MusicViz/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/alexsf/CLionProjects/MusicViz /Users/alexsf/CLionProjects/MusicViz /Users/alexsf/CLionProjects/MusicViz/cmake-build-debug /Users/alexsf/CLionProjects/MusicViz/cmake-build-debug /Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/corbettkaniff/CLionProjects/MusicViz /Users/corbettkaniff/CLionProjects/MusicViz /Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug /Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug /Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/musicViz.dir/depend
 

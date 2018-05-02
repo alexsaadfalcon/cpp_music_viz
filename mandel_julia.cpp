@@ -6,9 +6,11 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <random>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <sys/stat.h>
+#include <map>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Shader.h"
@@ -19,11 +21,12 @@ static void error_callback(int error, const char *description) {
     std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-double cx = -2.5, cy = 1.5, zoom = 0.156729;
+double cx = -1.2, cy = -0.75, zoom = 0.50;
 double C_re, C_im; //Julia parameters
 int counter;
-int itr = 256;
+int itr = 100;
 int fps = 0;
+uint64_t index_counter = 0;
 
 GLFWwindow *window = nullptr;
 
@@ -37,6 +40,8 @@ double last_time = 0, current_time = 0;
 unsigned int ticks = 0;
 
 bool keys[1024] = { 0 };
+
+std::map<int, int> frequency_buckets;
 
 static void cursor_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -105,8 +110,7 @@ const char* vertex_shader =
 static void update_window_title()
 {
     std::ostringstream ss;
-    ss << "Alex Saad-Falcon ";
-    ss << ", FPS: " << fps;
+    ss << "FPS: " << fps;
     ss << ", Iterations: " << itr;
     ss << ", Zoom: " << zoom;
     ss << ", At: (" << std::setprecision(8) << C_re << " + " << C_im << " + " << counter;
@@ -119,9 +123,9 @@ static void compile_shader(GLuint &prog)
     glShaderSource (vs, 1, &vertex_shader, NULL);
     glCompileShader (vs);
 
-    std::ifstream t("../dft_shader.glsl");
+    std::ifstream t("../complex_shader.glsl");
     if(!t.is_open()) {
-        std::cerr << "Cannot open dft_shader.glsl!" << std::endl;
+        std::cerr << "Cannot open complex_shader.glsl!" << std::endl;
         return;
     }
     std::string str((std::istreambuf_iterator<char>(t)),
@@ -180,7 +184,8 @@ static time_t get_mtime(const char *path)
     return statbuf.st_mtime;
 }
 
-int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
+int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
+           float  * coeff_float_max, int num_coeff) {
 //int mandel_julia_renderer(short * samples, u_int start, u_int num_samples) {
     if(!glfwInit()) {
         std::cerr << "Failed to init GLFW" << std::endl;
@@ -219,7 +224,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     GLuint prog;
     compile_shader(prog);
 
-    last_mtime = get_mtime("../dft_shader.glsl");
+    last_mtime = get_mtime("../complex_shader.glsl");
 
     float points[] = {
             -1.0f,  1.0f,  0.0f,
@@ -316,7 +321,7 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
     //glBindVertexArray(VAO);
 
     while(!glfwWindowShouldClose(window)) {
-        time_t new_time = get_mtime("../dft_shader.glsl");
+        time_t new_time = get_mtime("../complex_shader.glsl");
         if(new_time != last_mtime) {
             glDeleteProgram(prog);
             compile_shader(prog);
@@ -335,7 +340,6 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
-        glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
         glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -356,16 +360,78 @@ int render(float coeff_float_arr[], float  * coeff_float_max, int num_coeff) {
         glfwPollEvents();
 
         int period = 500;
+        double theta;
         ticks++;
         current_time = glfwGetTime();
-        if(current_time - last_time > .02) {
-            std::cout << *coeff_float_max << std::endl;
+        C_re = -.6;
+        C_im = -.6;
+        double C_re_old = -.6, C_im_old = -.6;
+
+        uint64_t avg_size = 420;
+        float moving_avg_real[avg_size];
+        float moving_avg_imag[avg_size];
+        for (int i = 0; i < avg_size; ++i) {
+            moving_avg_real[i] = 0;
+            moving_avg_imag[i] = 0;
+        }
+        if(current_time - last_time > .002) {
+            //std::cout << *coeff_float_max << std::endl;
             fps = ticks;
             update_window_title();
             last_time = glfwGetTime();
             ticks = 0;
-            C_re = .7885*std::cos(((double)counter*2*M_PI)/(double)period);
-            C_im = .7885*std::sin(((double)counter*2*M_PI)/(double)period);
+            //C_re = std::cos(((double)counter*2*M_PI)/(double)period);
+            //C_im = std::sin(((double)counter*2*M_PI)/(double)period);
+            float mag = 0, old_mag = 0, alpha = .9, beta = 1-alpha;
+            for (int i = 0; i < num_coeff; ++i) {
+                mag += coeff_float_arr[i] * coeff_float_arr[i];
+            }
+            mag = alpha * mag * .7885 / float(num_coeff) + beta * old_mag;
+            //std::cout << "Magnitude : " << mag << std::endl;
+            old_mag = mag;
+            itr = mag / 1000000000;
+            theta = std::rand() * 2 * M_PI;
+
+            float real_sum = 0, imag_sum = 0;
+            for (int i = 0; i < 5000; i++) {
+                real_sum += real_arr[i];
+                imag_sum += imag_arr[i];
+            }
+            real_sum /= 5000;
+            imag_sum /= 5000;
+            //real_sum = 1 - real_sum;
+            //imag_sum = 1 - imag_sum;
+            //std::cout << "real_sum" << real_sum << std::endl;
+            //std::cout << "imag_sum" << imag_sum << std::endl;
+            moving_avg_real[index_counter] = real_sum;
+            moving_avg_imag[index_counter] = imag_sum;
+            index_counter = (index_counter + 1) % avg_size;
+            //std::cout << index_counter << std::endl;
+            float avg_real = 0, avg_imag = 0;
+            for (int i = 0; i < avg_size; ++i) {
+                avg_real += moving_avg_real[i];
+                avg_imag += moving_avg_imag[i];
+            }
+            avg_real /= avg_size;
+            avg_imag /= avg_size;
+
+            C_re = avg_real * 0.05; // max is .6
+            C_im = avg_imag * 0.05; // max is .6
+            C_re = -.5 - C_re / 3;
+            C_im = -.5 - C_im / 3;
+
+            float threshold_min = -0.95;
+            float threshold_max = -0.55;
+            C_re = C_re < threshold_min ? threshold_min : C_re;
+            C_re = C_re > threshold_max ? threshold_max : C_re;
+            C_im = C_im < threshold_min ? threshold_min : C_im;
+            C_im = C_im > threshold_max ? threshold_max : C_im;
+            //C_im = 0.50;
+            //C_re = (1 - real_sum) / 2.5;
+            //C_im = (1 - imag_sum) / 2.5;
+            std::cout << "C_re : " << C_re << std::endl;
+            std::cout << "C_im : " << C_im << std::endl;
+            //C_re = 0.4;
             counter = (counter + 1) % period;
         }
     }

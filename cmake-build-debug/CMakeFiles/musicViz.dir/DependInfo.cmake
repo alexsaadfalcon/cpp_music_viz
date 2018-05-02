@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/alexsf/CLionProjects/MusicViz/glad.c" "/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/glad.c.o"
+  "/Users/corbettkaniff/CLionProjects/MusicViz/glad.c" "/Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/glad.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
@@ -20,7 +20,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/local/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/alexsf/CLionProjects/MusicViz/main.cpp" "/Users/alexsf/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/main.cpp.o"
+  "/Users/corbettkaniff/CLionProjects/MusicViz/main.cpp" "/Users/corbettkaniff/CLionProjects/MusicViz/cmake-build-debug/CMakeFiles/musicViz.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
