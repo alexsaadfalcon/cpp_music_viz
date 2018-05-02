@@ -389,16 +389,16 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             mag = alpha * mag * .7885 / float(num_coeff) + beta * old_mag;
             //std::cout << "Magnitude : " << mag << std::endl;
             old_mag = mag;
-            itr = mag / 400000000;
+            itr = mag / 1000000000;
             theta = std::rand() * 2 * M_PI;
 
             float real_sum = 0, imag_sum = 0;
-            for (int i = 0; i < 2500; i++) {
+            for (int i = 0; i < 5000; i++) {
                 real_sum += real_arr[i];
                 imag_sum += imag_arr[i];
             }
-            real_sum /= 2500;
-            imag_sum /= 2500;
+            real_sum /= 5000;
+            imag_sum /= 5000;
             //real_sum = 1 - real_sum;
             //imag_sum = 1 - imag_sum;
             //std::cout << "real_sum" << real_sum << std::endl;
@@ -411,8 +411,6 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             for (int i = 0; i < avg_size; ++i) {
                 avg_real += moving_avg_real[i];
                 avg_imag += moving_avg_imag[i];
-                //std::cout << "mvg avg real : " << moving_avg_real[i] << std::endl;
-                //std::cout << "mvg avg imag : " << moving_avg_imag[i] << std::endl;
             }
             avg_real /= avg_size;
             avg_imag /= avg_size;

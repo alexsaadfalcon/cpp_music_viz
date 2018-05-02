@@ -11,11 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="almost smooth...">
+    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/musicViz" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/musicViz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/complex_shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/complex_shader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mandel_julia.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/mandel_julia.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -29,11 +27,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+            <state relative-caret-position="347">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#77#104#0" expanded="true" />
               </folding>
@@ -41,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mandel_julia.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mandel_julia.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="131">
+              <caret line="412" column="47" selection-start-line="412" selection-start-column="47" selection-end-line="412" selection-end-column="47" />
               <folding>
                 <element signature="e#43#62#0" expanded="true" />
               </folding>
@@ -164,8 +162,8 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/dft_shader.glsl" />
         <option value="$PROJECT_DIR$/complex_shader.glsl" />
-        <option value="$PROJECT_DIR$/mandel_julia.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/mandel_julia.cpp" />
       </list>
     </option>
   </component>
@@ -185,7 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,6 +194,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -276,6 +274,7 @@
       <workItem from="1525029833010" duration="413000" />
       <workItem from="1525105826859" duration="100000" />
       <workItem from="1525296977998" duration="877000" />
+      <workItem from="1525298222480" duration="465000" />
     </task>
     <task id="LOCAL-00001" summary="Mac OS working after brew install">
       <created>1523980712637</created>
@@ -333,27 +332,41 @@
       <option name="project" value="LOCAL" />
       <updated>1524509765929</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="finished :D">
+      <created>1525298477496</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525298477496</updated>
+    </task>
+    <task id="LOCAL-00010" summary="finished :D">
+      <created>1525298628456</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1525298628456</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53322000" />
+    <option name="totallyTimeSpent" value="53787000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4990619" visible="true" weight="0.22057787" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32147938" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3212121" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.32969698" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.24121211" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.24182077" />
       <window_info id="Structure" order="1" sideWeight="0.50093806" side_tool="true" weight="0.22057787" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.26600283" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39687055" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -363,23 +376,23 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32848486" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32954547" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49964765" weight="0.32848486" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32848486" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.32969698" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32848486" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32954547" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32848486" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -395,7 +408,8 @@
     <MESSAGE value="base bars working" />
     <MESSAGE value="frequency playground" />
     <MESSAGE value="almost smooth..." />
-    <option name="LAST_COMMIT_MESSAGE" value="almost smooth..." />
+    <MESSAGE value="finished :D" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished :D" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -757,22 +771,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        <state relative-caret-position="347">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
-            <element signature="e#43#62#0" expanded="true" />
+            <element signature="e#77#104#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state relative-caret-position="131">
+          <caret line="412" column="47" selection-start-line="412" selection-start-column="47" selection-end-line="412" selection-end-column="47" />
           <folding>
-            <element signature="e#77#104#0" expanded="true" />
+            <element signature="e#43#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
