@@ -427,7 +427,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             C_im = -.5 - C_im / 3;
 
             float threshold_min = -0.95;
-            float threshold_max = -0.20;
+            float threshold_max = -0.55;
             C_re = C_re < threshold_min ? threshold_min : C_re;
             C_re = C_re > threshold_max ? threshold_max : C_re;
             C_im = C_im < threshold_min ? threshold_min : C_im;
