@@ -110,8 +110,7 @@ const char* vertex_shader =
 static void update_window_title()
 {
     std::ostringstream ss;
-    ss << "Alex Saad-Falcon ";
-    ss << ", FPS: " << fps;
+    ss << "FPS: " << fps;
     ss << ", Iterations: " << itr;
     ss << ", Zoom: " << zoom;
     ss << ", At: (" << std::setprecision(8) << C_re << " + " << C_im << " + " << counter;
@@ -341,9 +340,6 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
         glUniform1i(glGetUniformLocation(prog, "num_coeff"), num_coeff);
-        //glUniform1fv(glGetUniformLocation(prog, "coeff_float_arr"), num_coeff, coeff_float_arr);
-        //glUniform1fv(glGetUniformLocation(prog, "real_arr"), num_coeff / 2, real_arr);
-        //glUniform1fv(glGetUniformLocation(prog, "imag_arr"), num_coeff / 2, imag_arr);
         glUniform1d(glGetUniformLocation(prog, "coeff_float_max"), *coeff_float_max);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
