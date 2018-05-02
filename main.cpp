@@ -61,7 +61,7 @@ void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],floa
 int main(int argc, char *argv[]) {
     //Load in wave file to buffer
     sf::SoundBuffer buffer; // 16-bit signed ints
-    if (!buffer.loadFromFile("../flume_insane.wav"))
+    if (!buffer.loadFromFile("../RAF.wav"))
         return -1;
 
     sf::Sound sound;
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 
     sound.play();
     //sound.setVolume(1.0);
-    sound.setPlayingOffset(sf::seconds(35));
+    sound.setPlayingOffset(sf::seconds(15));
     std::cout << "sampleCount = " << sampleCount << std::endl;
     std::cout << "sampleRate  = " << sampleRate << " samples/second" << std::endl;
 
