@@ -40,4 +40,5 @@ target_link_libraries(
         ${OPENGL_LIBRARIES}
         ${GLEW_LIBRARIES}
         ${EXTRA_LIBS}
+        -lconfig++
 )

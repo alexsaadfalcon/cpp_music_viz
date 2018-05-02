@@ -10,6 +10,10 @@
 #include <chrono>
 #include <iostream>
 #include <complex>
+#include <libconfig.h++>
+
+using namespace std;
+using namespace libconfig;
 
 double pi = M_PI;
 
@@ -59,9 +63,32 @@ void update_dft(sf::Sound * sound, const short * samples, float coeff_arr[],floa
 }
 
 int main(int argc, char *argv[]) {
+    Config cfg;
+
+    // Read the file. If there is an error, report it and exit.
+    try
+    {
+        cfg.readFile("../config_file.txt");
+    }
+    catch(const FileIOException &fioex)
+    {
+        std::cerr << "I/O error while reading file." << std::endl;
+        return(EXIT_FAILURE);
+    }
+    catch(const ParseException &pex)
+    {
+        std::cerr << "Parse error at " << pex.getFile() << ":" << pex.getLine()
+                  << " - " << pex.getError() << std::endl;
+        return(EXIT_FAILURE);
+    }
+
+    string song = cfg.lookup("song");
+    cout << "Song: " << song << endl << endl;
+
+
     //Load in wave file to buffer
     sf::SoundBuffer buffer; // 16-bit signed ints
-    if (!buffer.loadFromFile("../flume_insane.wav"))
+    if (!buffer.loadFromFile(song))
         return -1;
 
     sf::Sound sound;
