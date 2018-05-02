@@ -11,7 +11,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="" />
+    <list default="true" id="3587e825-8b07-4b91-a07c-8441d05068eb" name="Default" comment="almost smooth...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/musicViz" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/musicViz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/complex_shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/complex_shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mandel_julia.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/mandel_julia.cpp" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,12 +29,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="93" column="22" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="22" />
-              <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+            <state relative-caret-position="277">
+              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
               <folding>
                 <element signature="e#77#104#0" expanded="true" />
               </folding>
@@ -36,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mandel_julia.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mandel_julia.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="411" column="30" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
+            <state relative-caret-position="229">
+              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding>
                 <element signature="e#43#62#0" expanded="true" />
               </folding>
@@ -51,8 +56,8 @@
       <file leaf-file-name="complex_shader.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/complex_shader.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="1035">
+              <caret line="69" selection-start-line="68" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -69,8 +74,8 @@
       <file leaf-file-name="dft_shader.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dft_shader.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="18" selection-start-line="37" selection-start-column="4" selection-end-line="43" selection-end-column="18" />
+            <state relative-caret-position="150">
+              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -138,6 +143,9 @@
       <find>float_max</find>
       <find>dft_sh</find>
       <find>std</find>
+      <find>w</find>
+      <find>counter</find>
+      <find>10</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -156,8 +164,8 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/dft_shader.glsl" />
         <option value="$PROJECT_DIR$/complex_shader.glsl" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/mandel_julia.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -168,9 +176,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -255,6 +264,19 @@
       <workItem from="1524414853530" duration="1252000" />
       <workItem from="1524436677136" duration="793000" />
       <workItem from="1524507816128" duration="2017000" />
+      <workItem from="1524519849886" duration="29000" />
+      <workItem from="1524520180975" duration="130000" />
+      <workItem from="1524596562410" duration="351000" />
+      <workItem from="1524616959109" duration="1612000" />
+      <workItem from="1524625832556" duration="305000" />
+      <workItem from="1524677891940" duration="399000" />
+      <workItem from="1524678475887" duration="4000" />
+      <workItem from="1524678549585" duration="130000" />
+      <workItem from="1524684592574" duration="211000" />
+      <workItem from="1524756675178" duration="8000" />
+      <workItem from="1525029833010" duration="413000" />
+      <workItem from="1525105826859" duration="100000" />
+      <workItem from="1525296977998" duration="877000" />
     </task>
     <task id="LOCAL-00001" summary="Mac OS working after brew install">
       <created>1523980712637</created>
@@ -316,7 +338,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48050000" />
+    <option name="totallyTimeSpent" value="53322000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="800" extended-state="0" />
@@ -330,7 +352,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32954547" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49964765" visible="true" weight="0.24182077" />
       <window_info id="Structure" order="1" sideWeight="0.50093806" side_tool="true" weight="0.22057787" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32848486" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.26600283" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39687055" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -382,12 +404,12 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="59" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
+        <state relative-caret-position="4725">
+          <caret line="315" lean-forward="true" selection-start-line="303" selection-start-column="4" selection-end-line="315" />
           <folding>
-            <element signature="e#77#104#0" expanded="true" />
+            <element signature="e#43#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -715,13 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dft_shader.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="18" selection-start-line="37" selection-start-column="4" selection-end-line="43" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mandel_julia_shader.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -729,30 +744,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/dft_shader.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="93" column="22" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="22" />
-          <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
-          <folding>
-            <element signature="e#77#104#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/complex_shader.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="1035">
+          <caret line="69" selection-start-line="68" selection-end-line="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mandel_julia.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="411" column="30" selection-start-line="411" selection-start-column="30" selection-end-line="411" selection-end-column="30" />
+        <state relative-caret-position="229">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
             <element signature="e#43#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+          <folding>
+            <element signature="e#77#104#0" expanded="true" />
           </folding>
         </state>
       </provider>

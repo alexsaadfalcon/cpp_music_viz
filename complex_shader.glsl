@@ -92,5 +92,6 @@ void main()
 
     //colorOut = vec4(1-k/double(itr), 0.0, k/double(itr), 1.0);
     //colorOut = vec4(k/double(itr), 0.4, 1-k/double(itr), 1.0);
-    colorOut = map_to_color(k == itr ? 1 : k/double(50));
+//    colorOut = map_to_color(k == itr ? 1 : k/double(50));
+    colorOut = map_to_color(k/double(itr));
 }
