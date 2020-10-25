@@ -33,8 +33,8 @@ uint64_t index_counter = 0;
 
 GLFWwindow *window = nullptr;
 
-int w = 640;
-int h = 480;
+int w = 960;
+int h = 640;
 
 GLuint program;
 GLuint shader;
@@ -50,6 +50,11 @@ static void cursor_callback(GLFWwindow* window, double xpos, double ypos)
 {
 }
 
+static void window_size_callback(GLFWwindow* window, int width, int height) {
+    w = width;
+    h = height;
+}
+
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
     double xpos, ypos;
@@ -60,7 +65,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
     if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
         cx += (xr - cx) / zoom / 2.0;
-        cy -= (yr - cy) / zoom / 2.0;
+        cy += (yr - cy) / zoom / 2.0;
     }
 }
 
@@ -215,6 +220,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
     glfwSetMouseButtonCallback(window, mouse_button_callback);
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, GLFW_FALSE);
+    glfwSetWindowSizeCallback(window, window_size_callback);
 
     glfwMakeContextCurrent(window);
 
@@ -280,7 +286,7 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);

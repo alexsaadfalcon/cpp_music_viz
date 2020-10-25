@@ -83,6 +83,7 @@ int main(int argc, char *argv[]) {
     }
 
     string song = cfg.lookup("song");
+    song = "../" + song;
     cout << "Song: " << song << endl << endl;
 
 
