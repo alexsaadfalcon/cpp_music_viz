@@ -3,6 +3,7 @@
 out vec4 colorOut;
 uniform double screen_ratio;
 uniform double C_re, C_im;
+uniform double rot_re, rot_im;
 uniform dvec2 screen_size;
 uniform dvec2 center;
 uniform double zoom;
@@ -11,6 +12,7 @@ uniform int itr;
 //uniform float imag_arr[500];
 bool julia = true;
 int exponent = 2;
+
 
 vec4 map_to_color(double t) {
     double r = 9.0 * (1.0 - t) * t * t * t;
@@ -46,6 +48,10 @@ void main()
 
         re = screen_ratio * 1.0 * (gl_FragCoord.x / screen_size.x - 0.5);
         im = (gl_FragCoord.y * 1.0 / screen_size.y - 0.5);
+
+        double _re = re * rot_re - im * rot_im;
+        im = re * rot_im + im * rot_re;
+        re = _re;
 
         re /= zoom;
         im /= zoom;

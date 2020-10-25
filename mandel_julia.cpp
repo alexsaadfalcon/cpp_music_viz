@@ -21,7 +21,10 @@ static void error_callback(int error, const char *description) {
     std::cerr << "GLFW Error: " << description << std::endl;
 }
 
-double cx = -1.2, cy = -0.75, zoom = 0.50;
+//double cx = -1.2, cy = -0.75, zoom = 0.50;
+double cx = 0.0, cy = 0.0, zoom = 0.45;
+double rot = 0.0, rot_re = 0.707, rot_im = 0.707;
+//double rot = 0.0, rot_re = 0.0, rot_im = 1.0;
 double C_re, C_im; //Julia parameters
 int counter;
 int itr = 100;
@@ -110,7 +113,7 @@ const char* vertex_shader =
 static void update_window_title()
 {
     std::ostringstream ss;
-    ss << "FPS: " << fps;
+    //ss << "FPS: " << fps;
     ss << ", Iterations: " << itr;
     ss << ", Zoom: " << zoom;
     ss << ", At: (" << std::setprecision(8) << C_re << " + " << C_im << " + " << counter;
@@ -335,7 +338,9 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
         glUniform2d(glGetUniformLocation(prog, "screen_size"), (double)w, (double)h);
         glUniform1d(glGetUniformLocation(prog, "screen_ratio"), (double)w / (double)h);
         glUniform1d(glGetUniformLocation(prog, "C_re"), C_re);
-        glUniform1d(glGetUniformLocation(prog, "C_im"), C_re);
+        glUniform1d(glGetUniformLocation(prog, "C_im"), C_im);
+        glUniform1d(glGetUniformLocation(prog, "rot_re"), rot_re);
+        glUniform1d(glGetUniformLocation(prog, "rot_im"), rot_im);
         glUniform2d(glGetUniformLocation(prog, "center"), cx, cy);
         glUniform1d(glGetUniformLocation(prog, "zoom"), zoom);
         glUniform1i(glGetUniformLocation(prog, "itr"), itr);
@@ -426,6 +431,9 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             C_re = C_re > threshold_max ? threshold_max : C_re;
             C_im = C_im < threshold_min ? threshold_min : C_im;
             C_im = C_im > threshold_max ? threshold_max : C_im;
+            rot += 0.007;
+            rot_re = std::cos(rot);
+            rot_im = std::sin(rot);
             //C_im = 0.50;
             //C_re = (1 - real_sum) / 2.5;
             //C_im = (1 - imag_sum) / 2.5;
