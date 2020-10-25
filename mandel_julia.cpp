@@ -429,8 +429,8 @@ int render(float coeff_float_arr[], float real_arr[], float imag_arr[],
             //C_im = 0.50;
             //C_re = (1 - real_sum) / 2.5;
             //C_im = (1 - imag_sum) / 2.5;
-            std::cout << "C_re : " << C_re << std::endl;
-            std::cout << "C_im : " << C_im << std::endl;
+            //std::cout << "C_re : " << C_re << std::endl;
+            //std::cout << "C_im : " << C_im << std::endl;
             //C_re = 0.4;
             counter = (counter + 1) % period;
         }
