@@ -1,5 +1,5 @@
 # cpp_music_viz
-An OpenGL music visualizer using the FFT and the Mandelbrot set fractal
+An OpenGL music visualizer using the FFT and the Mandelbrot set fractal. Thank you to [Bensound](https://www.bensound.com/) for royalty=free music.
 
 
 ## Installation Instructions
