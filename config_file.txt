@@ -1,7 +1,6 @@
 // Toggle Comments to change the song and type of visual you would like to see
 
 song = "../flume_insane.wav";
-//song = "../Gucci Gang.wav";
 //song = "../flume_sleepless.wav";
 //song = "../flume_you&me.wav";
 
