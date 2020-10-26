@@ -13,4 +13,5 @@ First, clone the repository using `git clone https://github.com/alexsaadfalcon/c
 
 The executable will be placed in the `build/` directory. You can run it (after installation) with `cd build; ./musicViz`
 
+You can easily change the song being played by editing `config_file.txt`. You can either switch the song to one of the other two included songs, or add your own `.wav` file and put the file name in `config_file.txt`.
 
